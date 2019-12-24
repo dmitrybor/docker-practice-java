@@ -1,12 +1,18 @@
 version: '3'
 services:
   web:
-    build: 
-        context: ./images/app
+    build:
+        context: ./
+        dockerfile: images/app/Dockerfile
     ports:
       - "8888:8080"
     networks:
       - docker-practice-net
+    volumes:
+        - ../../:/app
+        - ~/.m2:/root/.m2
+    working_dir: /app
+    command: 'mvn spring-boot:run'
     depends_on:
       - postgres
       - redis 
