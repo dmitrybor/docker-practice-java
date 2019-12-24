@@ -1,5 +1,15 @@
 version: '3'
 services:
+  web:
+    build: 
+        context: ./images/app
+    ports:
+      - "8888:8080"
+    networks:
+      - docker-practice-net
+    depends_on:
+      - postgres
+      - redis 
   postgres:
     image: postgres:alpine
     environment:
